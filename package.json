@@ -86,6 +86,7 @@
     "enquire.js": "^2.1.6",
     "json2mq": "^0.2.0",
     "lodash.debounce": "^4.0.8",
+    "prettier": "^2.0.5",
     "resize-observer-polyfill": "^1.5.0"
   },
   "peerDependencies": {

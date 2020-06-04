@@ -82,7 +82,7 @@ export class Dots extends React.PureComponent {
       return (
         <li
           key={i}
-          role="tab"
+          role={this.props.useAriaRole ? "tab" : undefined}
           aria-labelledby={getNthDotAssociatedSlides(i, {
             slideCount: this.props.slideCount,
             slidesToScroll: this.props.slidesToScroll,
@@ -114,9 +114,12 @@ export class Dots extends React.PureComponent {
       );
     });
 
-    return React.cloneElement(this.props.appendDots(dots), {
-      className: this.props.dotsClass,
-      ...mouseEvents
-    });
+    return React.cloneElement(
+      this.props.appendDots(dots, this.props.useAriaRole),
+      {
+        className: this.props.dotsClass,
+        ...mouseEvents,
+      }
+    );
   }
 }
