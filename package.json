@@ -1,5 +1,5 @@
 {
-  "name": "@onedior/react-slick",
+  "name": "@dior/react-slick",
   "version": "0.28.0",
   "description": "React port of slick carousel",
   "main": "./lib",
