@@ -32,6 +32,7 @@
     "react-component"
   ],
   "devDependencies": {
+    "prettier": "^1.14.3",
     "autoprefixer": "^7.1.2",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.16.0",
@@ -50,7 +51,7 @@
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "es5-shim": "^4.5.9",
-    "eslint": "^3.6.1",
+    "eslint": "^5.9.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-react": "^6.3.0",
     "express": "^4.14.0",
