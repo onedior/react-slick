@@ -641,7 +641,8 @@ export class InnerSlider extends React.Component {
         "customPaging",
         "infinite",
         "appendDots",
-        "name"
+        "name",
+        "useAriaRole",
       ]);
       const { pauseOnDotsHover } = this.props;
       dotProps = {

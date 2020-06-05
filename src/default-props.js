@@ -9,7 +9,9 @@ var defaultProps = {
   accessibilitySlideLabel: "Slide",
   adaptiveHeight: false,
   afterChange: null,
-  appendDots: dots => <ul role="tablist">{dots}</ul>,
+  appendDots: (dots, useAriaRole) => (
+    <ul role={useAriaRole ? "tablist" : undefined}>{dots}</ul>
+  ),
   arrows: true,
   autoplay: false,
   autoplaySpeed: 3000,
@@ -52,6 +54,7 @@ var defaultProps = {
   swipeToSlide: false,
   touchMove: true,
   touchThreshold: 5,
+  useAriaRole: true,
   useCSS: true,
   useTransform: true,
   variableWidth: false,
