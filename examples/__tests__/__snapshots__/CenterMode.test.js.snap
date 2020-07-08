@@ -9,7 +9,7 @@ exports[`CenterMode Tests Activity test 1`] = `
             <li><button type=\\"button\\" data-role=\\"none\\" class=\\"slick-arrow slick-next\\" style=\\"display: block;\\">Next</button></li>
         </ul>
         <div class=\\"slick-list\\" style=\\"padding: 0px 60px;\\">
-            <ul class=\\"slick-track\\" style=\\"width: -640px; opacity: 1;\\">
+            <ul class=\\"slick-track\\" style=\\"width: -640px; opacity: 1; transform: translate3d(160px, 0px, 0px); transition: transform 500ms ease;\\">
                 <li role=\\"tabpanel\\" aria-label=\\"Slide-3\\" style=\\"width: -40px;\\" data-index=\\"-4\\" tabindex=\\"-1\\" class=\\"slick-slide slick-cloned\\" aria-hidden=\\"true\\">
                     <div>
                         <div tabindex=\\"-1\\" style=\\"width: 100%; display: inline-block;\\">
@@ -138,7 +138,7 @@ exports[`CenterMode Tests Counting test 1`] = `
             <li><button type=\\"button\\" data-role=\\"none\\" class=\\"slick-arrow slick-next\\" style=\\"display: block;\\">Next</button></li>
         </ul>
         <div class=\\"slick-list\\" style=\\"padding: 0px 60px;\\">
-            <ul class=\\"slick-track\\" style=\\"width: -640px; opacity: 1;\\">
+            <ul class=\\"slick-track\\" style=\\"width: -640px; opacity: 1; transform: translate3d(120px, 0px, 0px);\\">
                 <li role=\\"tabpanel\\" aria-label=\\"Slide-3\\" style=\\"width: -40px;\\" data-index=\\"-4\\" tabindex=\\"-1\\" class=\\"slick-slide slick-cloned\\" aria-hidden=\\"true\\">
                     <div>
                         <div tabindex=\\"-1\\" style=\\"width: 100%; display: inline-block;\\">
@@ -267,7 +267,7 @@ exports[`CenterMode Tests Positioning test 1`] = `
             <li><button type=\\"button\\" data-role=\\"none\\" class=\\"slick-arrow slick-next\\" style=\\"display: block;\\">Next</button></li>
         </ul>
         <div class=\\"slick-list\\" style=\\"padding: 0px 60px;\\">
-            <ul class=\\"slick-track\\" style=\\"width: -640px; opacity: 1;\\">
+            <ul class=\\"slick-track\\" style=\\"width: -640px; opacity: 1; transform: translate3d(120px, 0px, 0px);\\">
                 <li role=\\"tabpanel\\" aria-label=\\"Slide-3\\" style=\\"width: -40px;\\" data-index=\\"-4\\" tabindex=\\"-1\\" class=\\"slick-slide slick-cloned\\" aria-hidden=\\"true\\">
                     <div>
                         <div tabindex=\\"-1\\" style=\\"width: 100%; display: inline-block;\\">
