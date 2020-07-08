@@ -9,7 +9,7 @@ exports[`Simple Slider Snapshots click on 3rd dot 1`] = `
             <li><button type=\\"button\\" data-role=\\"none\\" class=\\"slick-arrow slick-next\\" style=\\"display: block;\\">Next</button></li>
         </ul>
         <div class=\\"slick-list\\">
-            <ul class=\\"slick-track\\" style=\\"opacity: 1;\\">
+            <ul class=\\"slick-track\\" style=\\"opacity: 1; transform: translate3d(0px, 0px, 0px); transition: transform 500ms ease;\\">
                 <li role=\\"tabpanel\\" aria-label=\\"Slide-6\\" style=\\"width: 0px;\\" data-index=\\"-1\\" tabindex=\\"-1\\" class=\\"slick-slide slick-cloned\\" aria-hidden=\\"true\\">
                     <div>
                         <div tabindex=\\"-1\\" style=\\"width: 100%; display: inline-block;\\">
@@ -126,7 +126,7 @@ exports[`Simple Slider Snapshots click on next button 1`] = `
             <li><button type=\\"button\\" data-role=\\"none\\" class=\\"slick-arrow slick-next\\" style=\\"display: block;\\">Next</button></li>
         </ul>
         <div class=\\"slick-list\\">
-            <ul class=\\"slick-track\\" style=\\"opacity: 1;\\">
+            <ul class=\\"slick-track\\" style=\\"opacity: 1; transform: translate3d(0px, 0px, 0px); transition: transform 500ms ease;\\">
                 <li role=\\"tabpanel\\" aria-label=\\"Slide-6\\" style=\\"width: 0px;\\" data-index=\\"-1\\" tabindex=\\"-1\\" class=\\"slick-slide slick-cloned\\" aria-hidden=\\"true\\">
                     <div>
                         <div tabindex=\\"-1\\" style=\\"width: 100%; display: inline-block;\\">
@@ -243,7 +243,7 @@ exports[`Simple Slider Snapshots click on prev button 1`] = `
             <li><button type=\\"button\\" data-role=\\"none\\" class=\\"slick-arrow slick-next\\" style=\\"display: block;\\">Next</button></li>
         </ul>
         <div class=\\"slick-list\\">
-            <ul class=\\"slick-track\\" style=\\"opacity: 1;\\">
+            <ul class=\\"slick-track\\" style=\\"opacity: 1; transform: translate3d(0px, 0px, 0px); transition: transform 500ms ease;\\">
                 <li role=\\"tabpanel\\" aria-label=\\"Slide-6\\" style=\\"width: 0px;\\" data-index=\\"-1\\" tabindex=\\"-1\\" class=\\"slick-slide slick-cloned\\" aria-hidden=\\"true\\">
                     <div>
                         <div tabindex=\\"-1\\" style=\\"width: 100%; display: inline-block;\\">
@@ -360,7 +360,7 @@ exports[`Simple Slider Snapshots slider initial state 1`] = `
             <li><button type=\\"button\\" data-role=\\"none\\" class=\\"slick-arrow slick-next\\" style=\\"display: block;\\">Next</button></li>
         </ul>
         <div class=\\"slick-list\\">
-            <ul class=\\"slick-track\\" style=\\"opacity: 1;\\">
+            <ul class=\\"slick-track\\" style=\\"opacity: 1; transform: translate3d(0px, 0px, 0px);\\">
                 <li role=\\"tabpanel\\" aria-label=\\"Slide-6\\" style=\\"width: 0px;\\" data-index=\\"-1\\" tabindex=\\"-1\\" class=\\"slick-slide slick-cloned\\" aria-hidden=\\"true\\">
                     <div>
                         <div tabindex=\\"-1\\" style=\\"width: 100%; display: inline-block;\\">

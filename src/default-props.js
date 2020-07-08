@@ -1,6 +1,6 @@
 import React from "react";
 
-var defaultProps = {
+let defaultProps = {
   accessibility: true,
   accessibilityNextLabel: "Next",
   accessibilityPauseLabel: "Pause",
@@ -20,7 +20,7 @@ var defaultProps = {
   centerPadding: "50px",
   className: "",
   cssEase: "ease",
-  customPaging: i => <button aria-labelledby={`slide-${i}`}>{i + 1}</button>,
+  customPaging: (i) => <button aria-labelledby={`slide-${i}`}>{i + 1}</button>,
   dots: false,
   dotsClass: "slick-dots",
   draggable: true,
@@ -59,7 +59,7 @@ var defaultProps = {
   useTransform: true,
   variableWidth: false,
   vertical: false,
-  waitForAnimate: true
+  waitForAnimate: true,
 };
 
 export default defaultProps;

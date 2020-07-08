@@ -5,16 +5,18 @@ var del = require("del");
 var sass = require("gulp-sass");
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
-var runSequence = require("run-sequence");
 var assign = require("object-assign");
+var opn = require("opn");
 
-gulp.task("default", ["watch", "server"]);
+var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
-gulp.task("clean", function() {
+const DEV_PORT = 8080;
+
+gulp.task("clean", function () {
   return del(["./build/*"]);
 });
 
-gulp.task("copy", function() {
+gulp.task("copy", function () {
   gulp.src("./docs/index.html").pipe(gulp.dest("./build"));
   gulp.src("./docs/docs.css").pipe(gulp.dest("./build"));
   gulp.src("./docs/slick.css").pipe(gulp.dest("./build"));
@@ -28,79 +30,106 @@ gulp.task("copy", function() {
     .pipe(gulp.dest("./build"));
 });
 
-gulp.task("sass", function() {
+gulp.task("sass", function () {
   return gulp
     .src(["./docs/**/*.{scss,sass}"])
     .pipe(
       sass({
         includePaths: ["bower_components", "node_modules"],
-        errLogToConsole: true
+        errLogToConsole: true,
       })
     )
     .pipe(gulp.dest("./build"));
 });
 
-gulp.task("watch", ["copy", "sass"], function() {
-  gulp.watch(["./docs/**/*.{scss,sass}"], ["sass"]);
-  gulp.watch(["./docs/index.html"], ["copy"]);
-  gulp.watch(["./docs/docs.css"], ["copy"]);
-  gulp.watch(["./docs/slick.css"], ["copy"]);
-  gulp.watch(["./docs/slick-theme.css"], ["copy"]);
-});
+gulp.task(
+  "watch",
+  gulp.series(["copy", "sass"], function (done) {
+    gulp.watch(["./docs/**/*.{scss,sass}"], gulp.parallel(["sass"]));
+    gulp.watch(["./docs/index.html"], gulp.parallel(["copy"]));
+    gulp.watch(["./docs/docs.css"], gulp.parallel(["copy"]));
+    gulp.watch(["./docs/slick.css"], gulp.parallel(["copy"]));
+    gulp.watch(["./docs/slick-theme.css"], gulp.parallel(["copy"]));
+    done();
+  })
+);
 
-gulp.task("server", ["watch", "copy", "sass"], function(callback) {
-  var myConfig = require("./webpack.config");
-  myConfig.plugins = myConfig.plugins.concat(
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("dev_docs")
-      }
-    })
-  );
-
-  new WebpackDevServer(webpack(myConfig), {
-    contentBase: "./build",
-    hot: true,
-    debug: true
-  }).listen(8080, "0.0.0.0", function(err, result) {
-    if (err) {
-      console.log(err);
+gulp.task(
+  "server",
+  gulp.series(["watch", "copy", "sass"], function () {
+    console.log("Start");
+    var myConfig = require("./webpack.config");
+    if (process.env.SINGLE_DEMO) {
+      myConfig.entry = {
+        "docs.js": "./docs/single-demo.js",
+      };
     }
-  });
-  callback();
-});
+    myConfig.plugins = myConfig.plugins.concat(
+      new webpack.DefinePlugin({
+        "process.env": {
+          NODE_ENV: JSON.stringify("dev_docs"),
+        },
+      })
+    );
+
+    new WebpackDevServer(webpack(myConfig), {
+      contentBase: "./build",
+      hot: true,
+      stats: {
+        colors: true,
+      },
+    }).listen(DEV_PORT, "0.0.0.0", function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        const server_url = `http://0.0.0.0:${DEV_PORT}`;
+        console.log(`> Dev Server started at ${server_url}`);
+        opn(server_url);
+      }
+    });
+  })
+);
 
 // gulp tasks for building dist files
-gulp.task("dist-clean", function() {
+gulp.task("dist-clean", function () {
   return del(["./dist/*"]);
 });
 
 var distConfig = require("./webpack.config.dist.js");
-gulp.task("dist-unmin", function(cb) {
+gulp.task("dist-unmin", function (cb) {
   var unminConfig = assign({}, distConfig);
   unminConfig.output.filename = "react-slick.js";
-  return webpack(unminConfig, function(err, stat) {
+  unminConfig.mode = "none";
+  return webpack(unminConfig, function (err, stat) {
     console.error(err);
     cb();
   });
 });
 
-gulp.task("dist-min", function(cb) {
+gulp.task("dist-min", function (cb) {
   var minConfig = assign({}, distConfig);
   minConfig.output.filename = "react-slick.min.js";
   minConfig.plugins = minConfig.plugins.concat(
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
+    new UglifyJsPlugin({
+      cache: true,
+      parallel: true,
+      sourceMap: true,
+      uglifyOptions: {
+        warnings: false,
+      },
     })
   );
-  return webpack(minConfig, function(err, stat) {
+  return webpack(minConfig, function (err, stat) {
     console.error(err);
     cb();
   });
 });
 
-gulp.task("dist", function(cb) {
-  runSequence("dist-clean", "dist-unmin", "dist-min", cb);
-});
+gulp.task(
+  "dist",
+  gulp.series(["dist-clean", "dist-unmin", "dist-min"], function (done) {
+    done();
+  })
+);
+
+gulp.task("default", gulp.series(["watch", "server"]));

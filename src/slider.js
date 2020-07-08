@@ -11,12 +11,12 @@ export default class Slider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      breakpoint: null
+      breakpoint: null,
     };
     this._responsiveMediaHandlers = [];
   }
 
-  innerSliderRefHandler = ref => (this.innerSlider = ref);
+  innerSliderRefHandler = (ref) => (this.innerSlider = ref);
 
   media(query, handler) {
     // javascript handler for  css media query
@@ -25,7 +25,7 @@ export default class Slider extends React.Component {
   }
 
   // handles responsive breakpoints
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // performance monitoring
     //if (process.env.NODE_ENV !== 'production') {
     //const { whyDidYouUpdate } = require('why-did-you-update')
@@ -33,7 +33,7 @@ export default class Slider extends React.Component {
     //}
     if (this.props.responsive) {
       let breakpoints = this.props.responsive.map(
-        breakpt => breakpt.breakpoint
+        (breakpt) => breakpt.breakpoint
       );
       // sort them in increasing order of their numerical value
       breakpoints.sort((x, y) => x - y);
@@ -46,7 +46,7 @@ export default class Slider extends React.Component {
         } else {
           bQuery = json2mq({
             minWidth: breakpoints[index - 1] + 1,
-            maxWidth: breakpoint
+            maxWidth: breakpoint,
           });
         }
         // when not using server side rendering
@@ -68,7 +68,7 @@ export default class Slider extends React.Component {
   }
 
   componentWillUnmount() {
-    this._responsiveMediaHandlers.forEach(function(obj) {
+    this._responsiveMediaHandlers.forEach(function (obj) {
       enquire.unregister(obj.query, obj.handler);
     });
   }
@@ -89,7 +89,7 @@ export default class Slider extends React.Component {
     var newProps;
     if (this.state.breakpoint) {
       newProps = this.props.responsive.filter(
-        resp => resp.breakpoint === this.state.breakpoint
+        (resp) => resp.breakpoint === this.state.breakpoint
       );
       settings =
         newProps[0].settings === "unslick"
@@ -106,9 +106,7 @@ export default class Slider extends React.Component {
         process.env.NODE_ENV !== "production"
       ) {
         console.warn(
-          `slidesToScroll should be equal to 1 in centerMode, you are using ${
-            settings.slidesToScroll
-          }`
+          `slidesToScroll should be equal to 1 in centerMode, you are using ${settings.slidesToScroll}`
         );
       }
       settings.slidesToScroll = 1;
@@ -117,9 +115,7 @@ export default class Slider extends React.Component {
     if (settings.fade) {
       if (settings.slidesToShow > 1 && process.env.NODE_ENV !== "production") {
         console.warn(
-          `slidesToShow should be equal to 1 when fade is true, you're using ${
-            settings.slidesToShow
-          }`
+          `slidesToShow should be equal to 1 when fade is true, you're using ${settings.slidesToShow}`
         );
       }
       if (
@@ -127,9 +123,7 @@ export default class Slider extends React.Component {
         process.env.NODE_ENV !== "production"
       ) {
         console.warn(
-          `slidesToScroll should be equal to 1 when fade is true, you're using ${
-            settings.slidesToScroll
-          }`
+          `slidesToScroll should be equal to 1 when fade is true, you're using ${settings.slidesToScroll}`
         );
       }
       settings.slidesToShow = 1;
@@ -141,7 +135,7 @@ export default class Slider extends React.Component {
 
     // Children may contain false or null, so we should filter them
     // children may also contain string filled with spaces (in certain cases where we use jsx strings)
-    children = children.filter(child => {
+    children = children.filter((child) => {
       if (typeof child === "string") {
         return !!child.trim();
       }
@@ -183,8 +177,8 @@ export default class Slider extends React.Component {
               tabIndex: -1,
               style: {
                 width: `${100 / settings.slidesPerRow}%`,
-                display: "inline-block"
-              }
+                display: "inline-block",
+              },
             })
           );
         }
@@ -195,7 +189,10 @@ export default class Slider extends React.Component {
         <li
           key={i}
           role={settings.useAriaRole ? "tabpanel" : undefined}
-          aria-label={settings.accessibilitySlideLabel && `${settings.accessibilitySlideLabel}-${i + 1}`}
+          aria-label={
+            settings.accessibilitySlideLabel &&
+            `${settings.accessibilitySlideLabel}-${i + 1}`
+          }
           style={settings.variableWidth ? { width: currentWidth } : null}
         >
           {newSlide}
@@ -205,12 +202,16 @@ export default class Slider extends React.Component {
 
     if (settings === "unslick") {
       const className = "regular slider " + (this.props.className || "");
-      return <div className={className}>{newChildren}</div>;
+      return <div className={className}>{children}</div>;
     } else if (newChildren.length <= settings.slidesToShow) {
       settings.unslick = true;
     }
     return (
-      <InnerSlider ref={this.innerSliderRefHandler} {...settings}>
+      <InnerSlider
+        style={this.props.style}
+        ref={this.innerSliderRefHandler}
+        {...settings}
+      >
         {newChildren}
       </InnerSlider>
     );

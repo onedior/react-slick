@@ -5,13 +5,13 @@ import classnames from "classnames";
 import {
   lazyStartIndex,
   lazyEndIndex,
-  getPreClones
+  getPreClones,
 } from "./utils/innerSliderUtils";
 
 // given specifications/props for a slide, fetch all the classes that need to be applied to the slide
-var getSlideClasses = spec => {
-  var slickActive, slickCenter, slickCloned;
-  var centerOffset, index;
+const getSlideClasses = (spec) => {
+  let slickActive, slickCenter, slickCloned;
+  let centerOffset, index;
 
   if (spec.rtl) {
     index = spec.slideCount - 1 - spec.index;
@@ -39,12 +39,12 @@ var getSlideClasses = spec => {
     "slick-active": slickActive,
     "slick-center": slickCenter,
     "slick-cloned": slickCloned,
-    "slick-current": slickCurrent // dubious in case of RTL
+    "slick-current": slickCurrent, // dubious in case of RTL
   };
 };
 
-var getSlideStyle = function(spec) {
-  var style = {};
+const getSlideStyle = (spec) => {
+  let style = {};
 
   if (spec.variableWidth === undefined || spec.variableWidth === false) {
     style.width = spec.slideWidth;
@@ -68,16 +68,6 @@ var getSlideStyle = function(spec) {
       spec.speed +
       "ms " +
       spec.cssEase;
-    style.WebkitTransition =
-      "opacity " +
-      spec.speed +
-      "ms " +
-      spec.cssEase +
-      ", " +
-      "visibility " +
-      spec.speed +
-      "ms " +
-      spec.cssEase;
   }
 
   return style;
@@ -85,22 +75,22 @@ var getSlideStyle = function(spec) {
 
 const getKey = (child, fallbackKey) => child.key || fallbackKey;
 
-var renderSlides = function(spec) {
-  var key;
-  var slides = [];
-  var preCloneSlides = [];
-  var postCloneSlides = [];
-  var childrenCount = React.Children.count(spec.children);
+const renderSlides = (spec) => {
+  let key;
+  let slides = [];
+  let preCloneSlides = [];
+  let postCloneSlides = [];
+  let childrenCount = React.Children.count(spec.children);
   let startIndex = lazyStartIndex(spec);
   let endIndex = lazyEndIndex(spec);
 
   React.Children.forEach(spec.children, (elem, index) => {
     let child;
-    var childOnClickOptions = {
+    let childOnClickOptions = {
       message: "children",
       index: index,
       slidesToScroll: spec.slidesToScroll,
-      currentSlide: spec.currentSlide
+      currentSlide: spec.currentSlide,
     };
 
     // in case of lazyLoad, whether or not we want to fetch the slide
@@ -112,8 +102,8 @@ var renderSlides = function(spec) {
     } else {
       child = <div />;
     }
-    var childStyle = getSlideStyle({ ...spec, index });
-    const slideClass = child.props.className || "";
+    let childStyle = getSlideStyle({ ...spec, index });
+    let slideClass = child.props.className || "";
     let slideClasses = getSlideClasses({ ...spec, index });
     // push a cloned element of the desired slide
     slides.push(
@@ -125,12 +115,12 @@ var renderSlides = function(spec) {
         tabIndex: "-1",
         "aria-hidden": !slideClasses["slick-active"],
         style: { outline: "none", ...(child.props.style || {}), ...childStyle },
-        onClick: e => {
+        onClick: (e) => {
           child.props && child.props.onClick && child.props.onClick(e);
           if (spec.focusOnSelect) {
             spec.focusOnSelect(childOnClickOptions);
           }
-        }
+        },
       })
     );
 
@@ -154,12 +144,12 @@ var renderSlides = function(spec) {
             className: classnames(slideClasses, slideClass),
             "aria-hidden": !slideClasses["slick-active"],
             style: { ...(child.props.style || {}), ...childStyle },
-            onClick: e => {
+            onClick: (e) => {
               child.props && child.props.onClick && child.props.onClick(e);
               if (spec.focusOnSelect) {
                 spec.focusOnSelect(childOnClickOptions);
               }
-            }
+            },
           })
         );
       }
@@ -178,12 +168,12 @@ var renderSlides = function(spec) {
             className: classnames(slideClasses, slideClass),
             "aria-hidden": !slideClasses["slick-active"],
             style: { ...(child.props.style || {}), ...childStyle },
-            onClick: e => {
+            onClick: (e) => {
               child.props && child.props.onClick && child.props.onClick(e);
               if (spec.focusOnSelect) {
                 spec.focusOnSelect(childOnClickOptions);
               }
-            }
+            },
           })
         );
       }
