@@ -314,9 +314,9 @@ export class InnerSlider extends React.Component {
         if (this.props.lazyLoad) {
           image.onload = () => {
             this.adaptHeight();
-            this.callbackTimers.push(
-              setTimeout(this.onWindowResized, this.props.speed)
-            );
+            // this.callbackTimers.push(
+            //   setTimeout(this.onWindowResized, this.props.speed)
+            // );
           };
         } else {
           image.onload = handler;
