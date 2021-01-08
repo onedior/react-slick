@@ -207,12 +207,19 @@ export class InnerSlider extends React.Component {
       if (this.props.autoplay) this.autoPlay("update");
       else this.pause("paused");
     });
+
+
+    /* 
+      This created a visual glitch when swiping just after rendering slider
+      I commented the lines below and it seems to break nothing
+    */
+
     // animating state should be cleared while resizing, otherwise autoplay stops working
-    this.setState({
-      animating: false
-    });
-    clearTimeout(this.animationEndCallback);
-    delete this.animationEndCallback;
+    // this.setState({
+    //   animating: false
+    // });
+    // clearTimeout(this.animationEndCallback);
+    // delete this.animationEndCallback;
   };
   updateState = (spec, setTrackStyle, callback) => {
     let updatedState = initializedState(spec);
