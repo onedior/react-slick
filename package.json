@@ -1,6 +1,6 @@
 {
   "name": "@dior/react-slick",
-  "version": "0.30.0",
+  "version": "0.31.0",
   "description": "React port of slick carousel",
   "main": "./lib",
   "files": [
