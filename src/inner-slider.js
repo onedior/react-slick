@@ -662,7 +662,7 @@ export class InnerSlider extends React.Component {
       dots = <Dots {...dotProps} />;
     }
 
-    var prevArrow, nextArrow, playPauseButton;
+    var prevArrow, nextArrow;
     let arrowProps = extractObject(spec, [
       "infinite",
       "centerMode",
@@ -691,10 +691,6 @@ export class InnerSlider extends React.Component {
     if (this.props.arrows) {
       prevArrow = <PrevArrow {...arrowProps} />;
       nextArrow = <NextArrow {...arrowProps} />;
-    }
-
-    if (this.state.autoplaying) {
-      playPauseButton = <PlayPauseButton {...playPauseButtonProps} />;
     }
 
     var verticalHeightStyle = null;
@@ -760,7 +756,9 @@ export class InnerSlider extends React.Component {
         </div>
         <div className="slick-bottom">
           {!this.props.unslick ? dots : ""}
-          {this.props.autoplay ? playPauseButton : ""}
+          {
+            this.props.autoplay && <PlayPauseButton {...playPauseButtonProps} />
+          }
         </div>
       </div>
     );
