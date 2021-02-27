@@ -20,6 +20,7 @@ import Rtl from '../examples/Rtl'
 import VariableWidth from '../examples/VariableWidth'
 import AdaptiveHeight from '../examples/AdaptiveHeight'
 import LazyLoad from '../examples/LazyLoad'
+import LazyLoadClosestImages from '../examples/LazyLoadClosestImages'
 import Fade from '../examples/Fade'
 import SlickGoTo from '../examples/SlickGoTo'
 import CustomArrows from '../examples/CustomArrows'
@@ -54,6 +55,7 @@ export default class App extends React.Component {
         <VariableWidth />
         <AdaptiveHeight />
         <LazyLoad />
+        <LazyLoadClosestImages />
         <Fade />
         <SlideChangeHooks />
         <SlickGoTo />
