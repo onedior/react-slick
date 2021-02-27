@@ -80,7 +80,34 @@ class SimpleSlider extends React.Component {
 
 ### Props
 
-For all available props, go [here](https://react-slick.neostack.com/docs/api/).
+For a list of available props from React Slick, go [here](https://react-slick.neostack.com/docs/api/).
+
+Additional props:
+
+- accessibilityNextLabel
+  - Type: string
+  - Default: "Next"
+  - Description: Used as label for the `Next` button
+- accessibilityPauseLabel
+  - Type: string
+  - Default: "Pause"
+  - Description: Used as `aria-label` for the `Pause` button
+- accessibilityPlayLabel
+  - Type: string
+  - Default: "Play"
+  - Description: Used as `aria-label` for the `Play` button
+- accessibilityPreviousLabel
+  - Type: string
+  - Default: "Previous"
+  - Description: Used as label for the `Previous` button
+- accessibilitySlideLabel
+  - Type: string
+  - Default: "Slide"
+  - Description: String added to the `aria-label` for carousel slide list elements
+- Name
+  - Type: string
+  - Default: ""
+  - Description: String added to the `id` for carousel slide elements. Can be used to eliminate duplicated IDs when there are multiple carousel instances in one page
 
 ### Methods
 
